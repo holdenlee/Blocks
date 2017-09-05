@@ -54,7 +54,7 @@ setToNL :: Set -> String
 setToNL = \case
           All -> "all blocks"
           With c -> printf "%s blocks" (colorToNL c)
-          Not s -> printf "blocks except %s" (setToNL s)
+          Not s -> printf "all but %s" (setToNL s)
           Diff s t -> printf "%s that are not %s" (setToNL s) (setToNL t)
           Leftmost s -> printf "leftmost %s" (setToNL s)
           Rightmost s -> printf "rightmost %s" (setToNL s)
@@ -104,4 +104,7 @@ main = [[Cyan],[Cyan],[Cyan],[Brown],[Red]]
      |> seqActsDisp
         [Add (With Cyan) Orange,
          Remove (With Brown),
-         Add (Leftmost (With Orange)) Red]
+         Add (Leftmost (With Orange)) Red,
+         Add All Brown,
+         Remove (Leftmost All), 
+         Add (Diff (With Brown) (Rightmost All)) Orange]
