@@ -90,6 +90,7 @@ seqActs = foldIterate evalAct
 evalActDisp :: Act -> World -> IO World
 evalActDisp a w = do
   let w' = evalAct a w
+  putStrLn (show a)
   putStrLn (actToNL a)
   putStrLn (display w')
   return w'
